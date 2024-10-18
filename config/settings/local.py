@@ -3,6 +3,7 @@ from .base import *  # noqa: F403
 from .base import INSTALLED_APPS
 from .base import MIDDLEWARE
 from .base import env
+import os
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -14,9 +15,11 @@ SECRET_KEY = env(
     default="VkLmNLC5XTZaiPxgocrxdCEa4Rzt1rnNsyHtrpkXCfrVrUiqGXZ6mn8fj1uDDe17",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]  # noqa: S104
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1","portdex.ai","16.171.60.163","www.portdex.ai"]  # noqa: S104
 
 # CACHES
+CSRF_TRUSTED_ORIGINS = ['https://portdex.ai', 'https://www.portdex.ai']
+
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#caches
 CACHES = {
@@ -60,6 +63,12 @@ INSTALLED_APPS += ["django_extensions"]
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-# import os
-# STATIC_URL = '/static/'  # Correct URL path for static files
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Directory where static files are located
+STATIC_URL = '/static/'
+
+# Additional locations the staticfiles app will traverse to find static files
+STATICFILES_DIRS = [
+    BASE_DIR / "edurock/static",  # Make sure this points to your correct static folder
+]
+
+# The absolute path to the directory where collectstatic will collect static files for production
+STATIC_ROOT = BASE_DIR / "staticfiles"
