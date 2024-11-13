@@ -279,3 +279,6 @@ project.min.css
 vendors.js
 *.min.js
 *.min.js.map
+
+
+/home/ubuntu/ecommerse/.env
